@@ -5,6 +5,7 @@ This project focuses on predicting whether an online shopper will make a purchas
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Dataset](#dataset)
+- [Features](#features)
 - [Approach](#approach)
 - [Implemented Models](#implemented-models)
 - [Evaluation](#evaluation)
@@ -29,6 +30,31 @@ The dataset contains:
 
 ### Data Source
 The dataset is publicly available from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset).
+
+---
+
+## Features
+
+### Numerical Features
+- **Administrative** / **Administrative Duration**: Number of administrative pages visited and total time spent on them.
+- **Informational** / **Informational Duration**: Number of informational pages visited and total time spent on them.
+- **ProductRelated** / **ProductRelated Duration**: Number of product-related pages visited and total time spent on them.
+- **BounceRate**: Percentage of visitors who leave after viewing a single page.
+- **ExitRate**: Percentage of pageviews that result in an exit from the site.
+- **PageValues**: Average value of a web page a user visited before completing an e-commerce transaction.
+- **SpecialDay**: Closeness of the session to a special day (e.g., Valentine's Day).
+
+### Categorical Features
+- **Month**: Month of the session.
+- **OperatingSystems**: Operating system of the user.
+- **Browser**: Browser used during the session.
+- **Region**: User's geographic region.
+- **TrafficType**: Traffic source type.
+- **VisitorType**: Whether the visitor is new or returning.
+- **Weekend**: Boolean indicating if the session occurred on a weekend.
+
+### Target Feature
+- **Revenue**: Boolean indicating whether a purchase was made during the session.
 
 ---
 
