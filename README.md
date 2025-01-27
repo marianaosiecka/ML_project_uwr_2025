@@ -67,7 +67,7 @@ The project workflow includes:
    - Scaling numerical features with MinMaxScaler.
 
 3. **Resampling Techniques**:
-   - Addressing class imbalance with **SMOTEENN** (SMOTE for oversampling + ENN for under-sampling).
+   - Addressing class imbalance with **SMOTEENN** (SMOTE for oversampling + ENN for undersampling).
 
 4. **Feature Selection**:
    - Using the SelectKBest with Mutual Information as the scoring function.
