@@ -5,7 +5,6 @@ This project focuses on predicting whether an online shopper will make a purchas
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Dataset](#dataset)
-- [Features](#features)
 - [Approach](#approach)
 - [Implemented Models](#implemented-models)
 - [Evaluation](#evaluation)
@@ -31,11 +30,9 @@ The dataset contains:
 ### Data Source
 The dataset is publicly available from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset).
 
----
+### Features
 
-## Features
-
-### Numerical Features
+#### Numerical Features
 - **Administrative** / **Administrative Duration**: Number of administrative pages visited and total time spent on them.
 - **Informational** / **Informational Duration**: Number of informational pages visited and total time spent on them.
 - **ProductRelated** / **ProductRelated Duration**: Number of product-related pages visited and total time spent on them.
@@ -44,7 +41,7 @@ The dataset is publicly available from the [UCI Machine Learning Repository](htt
 - **PageValues**: Average value of a web page a user visited before completing an e-commerce transaction.
 - **SpecialDay**: Closeness of the session to a special day (e.g., Valentine's Day).
 
-### Categorical Features
+#### Categorical Features
 - **Month**: Month of the session.
 - **OperatingSystems**: Operating system of the user.
 - **Browser**: Browser used during the session.
@@ -53,7 +50,7 @@ The dataset is publicly available from the [UCI Machine Learning Repository](htt
 - **VisitorType**: Whether the visitor is new or returning.
 - **Weekend**: Boolean indicating if the session occurred on a weekend.
 
-### Target Feature
+#### Target Feature
 - **Revenue**: Boolean indicating whether a purchase was made during the session.
 
 ---
@@ -73,10 +70,10 @@ The project workflow includes:
    - Addressing class imbalance with **SMOTEENN** (SMOTE for oversampling + ENN for under-sampling).
 
 4. **Feature Selection**:
-   - Using the chi-squared test to identify the most impactful features.
+   - Using the SelectKBest with Mutual Information as the scoring function.
 
 5. **Model Building and Tuning**:
-   - Training models with K-Fold cross-validation.
+   - Training models with 10-fold cross-validation.
    - Hyperparameter optimization using GridSearchCV.
 
 ---
@@ -104,23 +101,46 @@ The models were evaluated using:
 ---
 
 ## Results
-- **Random Forest**:
-  - Best score: 0.6717 (original data), 0.8328 (resampled data).
-  - Number of features: 12 (original), 4 (resampled).
+### Original data 
+Number of K best features:
+- Decision Tree: 2
+- Random Forest: 54
+- KNN: 5
+- XGBoost: 48
 
-- **Decision Tree**:
-  - Best score: 0.6714 (original data), 0.9266 (resampled data).
-  - Number of features: 2 (original), 8 (resampled).
+Evaluation metrics:
+| Model          | Accuracy | Recall   | Precision | F1 score |
+|----------------|----------|----------|-----------|----------|
+| Decision Tree  | 0.874049 | 0.803103 | 0.565136  | 0.663425 |
+| Random Forest  | 0.874297 | 0.803103 | 0.565775  | 0.663866 |
+| KNN            | 0.863381 | 0.531835 | 0.561265  | 0.546154 |
+| XGBoost        | 0.889018 | 0.756019 | 0.614615  | 0.678023 |
 
-- **XGBoost**:
-  - Best score: 0.6876 (original data), 0.9264 (resampled data).
-  - Number of features: 48 (original), 12 (resampled).
+![image](https://github.com/user-attachments/assets/e26debb6-6dde-43ba-a14e-be7d189151bb)
 
-- **KNN**:
-  - Best score: 0.5151 (original data), 0.9779 (resampled data).
-  - Number of features: 2 (original), 65 (resampled).
 
-Class balancing through SMOTEENN significantly improved model performance, especially for recall and precision.
+### Resampled data
+Number of K best features:
+- Decision Tree: 11
+- Random Forest: 3
+- KNN: 12
+- XGBoost: 11
+
+Evaluation metrics:
+| Model          | Accuracy | Recall   | Precision | F1 score |
+|----------------|----------|----------|-----------|----------|
+| Random Forest  | 0.920418 | 0.889603 | 0.946617  | 0.917225 |
+| Decision Tree  | 0.931362 | 0.913918 | 0.945770  | 0.929571 |
+| XGBoost        | 0.932955 | 0.920347 | 0.943013  | 0.931542 |
+| KNN            | 0.923397 | 0.937255 | 0.910782  | 0.923829 |
+
+![image](https://github.com/user-attachments/assets/245958ff-55e6-47d2-932b-f5b67039c624)
+
+
+### Conclusion
+Class balancing through SMOTEENN significantly improved model performance.
+
+**XGBoost outperformed** the other models with both the original and resampled data.
 
 ---
 
