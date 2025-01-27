@@ -140,7 +140,7 @@ Class balancing through SMOTEENN significantly improved model performance, espec
 1. Clone the repository:
    ```bash
    git clone https://github.com/marianaosiecka/ML_project_uwr_2025.git
-   cd online-shoppers-intention
+   cd ML_project_uwr_2025
    ```
 
 2. Install dependencies:
